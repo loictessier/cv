@@ -1,0 +1,25 @@
+basics:
+  name: ""
+  label: ""
+  email: ""
+  phone: ""
+  url: ""
+  summary: ""
+
+  location:
+    city: ""
+    countryCode: ""
+
+  profiles: []
+
+work: []
+volunteer: []
+education: []
+awards: []
+certificates: []
+publications: []
+skills: []
+languages: []
+interests: []
+references: []
+projects: []
