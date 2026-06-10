@@ -24,6 +24,8 @@ work:
     startDate: ""
     endDate: ""
     summary: ""
+    tasks:
+      - ""
     skills:
       - ""
     highlights:
@@ -93,6 +95,8 @@ projects:
     startDate: ""
     endDate: ""
     description: ""
+    skills:
+      - ""
     highlights:
       - ""
     url: ""
