@@ -1,2 +1,11 @@
 data/private/*
 !data/private/.gitkeep
+
+build/*
+!build/.gitkeep
+
+*.pdf
+*.html
+
+__pycache__/
+*.pyc
