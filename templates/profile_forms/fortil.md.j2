@@ -1,0 +1,108 @@
+{% macro format_month(date) -%}
+{%- if date -%}
+{{ date[5:7] }}/{{ date[0:4] }}
+{%- else -%}
+Aujourd’hui
+{%- endif -%}
+{%- endmacro %}
+
+# Dossier de compétences Fortil
+
+## Présentation
+
+### Titre Métier
+
+{{ basics.label | replace("\n", "  \n") }}
+
+### Résumé
+
+{{ basics.summary | replace("\n", "  \n") }}
+
+### Compétences & Outils
+
+| Compétence | Niveau |
+| ----- | ----- |
+{% for skill in skills %}
+{% if skill.keywords %}
+{% for keyword in skill.keywords %}
+| {{ keyword }} | {{ skill.level }} |
+{% endfor %}
+{% else %}
+| {{ skill.name }} | {{ skill.level }} |
+{% endif %}
+{% endfor %}
+
+### Savoir-être
+
+| Savoir-être |
+| ---------- |
+{% for soft_skill in softSkills %}
+| {{ soft_skill }} |
+{% else %}
+| À compléter |
+{% endfor %}
+
+### Langues
+
+| Langue | Niveau |
+| ------ | ------ |
+{% for language in languages %}
+| {{ language.language }} | {{ language.fluency }} |
+{% endfor %}
+
+### Diplômes
+
+| Année | Diplôme |
+| ----- | ------- |
+{% for education_item in education %}
+{% if education_item.credentialObtained | default(true) %}
+| {{ education_item.endDate[:4] }} | {{ education_item.studyType }} - {{ education_item.area }} - {{ education_item.institution }} |
+{% endif %}
+{% endfor %}
+
+### Formations / Certifications
+
+| Année | Intitulé |
+| ----- | -------- |
+{% for certificate in certificates %}
+| {{ certificate.date[:4] }} | {{ certificate.name }} - {{ certificate.issuer }} |
+{% endfor %}
+
+## Expériences professionnelles
+
+{% for job in work %}
+### {{ job.name | default("Société à compléter") }} — {{ job.position | default("Poste à compléter") }}
+
+**Durée :** À compléter  
+**De :** {{ format_month(job.startDate) }} à {{ format_month(job.endDate) }}  
+**Société :** {{ job.name | default("À compléter") }}  
+**Secteur d’activité :** {{ job.sector | default("À compléter") }}  
+**Nom du poste :** {{ job.position | default("À compléter") }}
+
+#### Titre & Objectif(s) de la mission
+
+{{ job.summary | default("À compléter en 2–3 lignes maximum.") | replace("\n", "  \n") }}
+
+#### Activités réalisées
+
+{% for task in job.tasks %}
+- {{ task }}
+{% else %}
+- À compléter
+{% endfor %}
+
+#### Environnement technique & Outils
+
+{% if job.skills %}
+{{ job.skills | join(", ") }}
+{% else %}
+À compléter
+{% endif %}
+
+#### Référence(s) entreprise
+
+À compléter
+
+---
+
+{% endfor %}

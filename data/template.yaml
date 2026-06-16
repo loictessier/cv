@@ -19,6 +19,7 @@ basics:
 
 work:
   - name: ""
+    sector: ""
     position: ""
     url: ""
     startDate: ""
@@ -30,6 +31,10 @@ work:
       - ""
     highlights:
       - ""
+    recommendations:
+      - name: ""
+        position : ""
+        text: ""
 
 volunteer:
   - organization: ""
@@ -51,6 +56,7 @@ education:
     score: ""
     courses:
       - ""
+    credentialObtained: true
 
 awards:
   - title: ""
@@ -76,6 +82,9 @@ skills:
     level: ""
     keywords: 
       - ""
+
+softSkills:
+  - ""
 
 languages: 
   - language: ""
