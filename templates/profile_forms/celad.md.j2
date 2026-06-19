@@ -1,0 +1,135 @@
+{% macro format_month(date) -%}
+{%- if date -%}
+{{ date[5:7] }}/{{ date[0:4] }}
+{%- else -%}
+Aujourd’hui
+{%- endif -%}
+{%- endmacro %}
+
+# Dossier de compétences Celad
+
+{{ basics.name }}
+
+{{ basics.label | replace("\n", "  \n") }}
+
+## Connaissances Techniques
+
+### Systèmes
+
+{% for skill in skills %}
+{% if skill.name in ["Systèmes & DevOps"] %}
+{{ skill.keywords | join(", ") }}
+{% endif %}
+{% endfor %}
+
+### Langages
+
+{% for skill in skills %}
+{% if skill.name in ["Développement front-end", "Développement Python", "Frameworks web Python", "Développement Java"] %}
+- **{{ skill.name }}** : {{ skill.keywords | join(", ") }}
+{% endif %}
+{% endfor %}
+
+### Réseaux / Intégration
+
+{% for skill in skills %}
+{% if skill.name in ["Middleware & intégration"] %}
+{{ skill.keywords | join(", ") }}
+{% endif %}
+{% endfor %}
+
+### Base de données
+
+{% for skill in skills %}
+{% if skill.name in ["Bases de données relationnelles"] %}
+{{ skill.keywords | join(", ") }}
+{% endif %}
+{% endfor %}
+
+### Méthodologies
+
+{% for skill in skills %}
+{% if skill.name in ["Méthodologies"] %}
+{{ skill.keywords | join(", ") }}
+{% endif %}
+{% endfor %}
+
+### Tests & qualité
+
+{% for skill in skills %}
+{% if skill.name in ["Tests & qualité"] %}
+{{ skill.keywords | join(", ") }}
+{% endif %}
+{% endfor %}
+
+### Outils
+
+{% for skill in skills %}
+{% if skill.name in ["Outils"] %}
+{{ skill.keywords | join(", ") }}
+{% endif %}
+{% endfor %}
+
+### Langues
+
+{% for language in languages %}
+{{ language.language }} : {{ language.fluency }}  
+{% endfor %}
+
+## Compétences fonctionnelles
+
+- Analyse de l’existant et compréhension du besoin
+- Développement et évolution d’applications web
+- Intégration applicative et échanges inter-systèmes
+- Automatisation de traitements techniques
+- Industrialisation des processus de développement et de déploiement
+- Maintenance évolutive et corrective
+- Documentation technique et transfert de connaissances
+- Participation aux rituels agiles, estimations et démonstrations de sprint
+
+## Expériences et principales réalisations
+
+{% for job in work %}
+### {{ job.position }} | {{ job.name }}
+
+De {{ format_month(job.startDate) }} à {{ format_month(job.endDate) }} | {{ job.location | default("Lieu à compléter") }}
+
+{% if job.summary %}
+{{ job.summary | replace("\n", "  \n") }}
+{% endif %}
+
+{% for task in job.tasks %}
+- {{ task }}
+{% else %}
+- À compléter
+{% endfor %}
+
+**Environnement :** {% if job.skills %}{{ job.skills | join(", ") }}{% else %}À compléter{% endif %}
+
+{% endfor %}
+
+## Projets personnels et/ou projets d'études
+
+{% for project in projects %}
+### {{ project.name }}
+
+Description du projet et des différentes tâches effectuées :
+
+{{ project.description | default("À compléter.") | replace("\n", "  \n") }}
+
+**Environnement :** {% if project.skills %}{{ project.skills | join(", ") }}{% else %}À compléter{% endif %}
+
+{% else %}
+À compléter si pertinent.
+{% endfor %}
+
+## Formation
+
+{% for education_item in education %}
+{% if education_item.credentialObtained | default(true) %}
+**{{ education_item.studyType }}**  
+{{ education_item.institution }} - {{ education_item.area }}  
+{{ education_item.endDate[:4] }}
+
+{% endif %}
+{% endfor %}
