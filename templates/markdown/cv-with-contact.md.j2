@@ -18,7 +18,7 @@ Maintenant
 {{ basics.label | replace("\n", "  \n") }}
 {: .cv-label }
 
-{{ basics.location.city }}
+{{ basics.location.city }}{% if basics.email %} · {{ basics.email }}{% endif %}{% if basics.phone %} · {{ basics.phone }}{% endif %}{% if basics.url %} · {{ basics.url }}{% endif %} 
 {: .cv-location }
 
 ## RÉSUMÉ {: .section-title }
